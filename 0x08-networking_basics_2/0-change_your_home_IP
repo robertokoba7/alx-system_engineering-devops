@@ -3,8 +3,6 @@
 #facebook.com resolves to 8.8.8.8
 
 cp /etc/hosts ~/hosts.new
-sed -i "/.*\slocalhost/d" ~/hosts.new
-echo "127.0.0.2 localost" >> ~/hosts.new
-sed -i "/.*\sfacebook/d" ~/hosts.new
-echo "8.8.8.8 facebook" >> ~/hosts.new
+sed -i 's/127.0.0.1/127.0.0.2/' ~/hosts.new
+sed -i '2i8.8.8.8 facebook' ~/hosts.new
 cp -f ~/hosts.new /etc/hosts
