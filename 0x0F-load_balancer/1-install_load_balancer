@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#The script is instaling and configuring HAproxy on my `lb-01` server.
 sudo apt-get update
 sudo apt install -y software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy
