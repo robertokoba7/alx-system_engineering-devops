@@ -10,14 +10,14 @@ sudo touch /etc/haproxy/haproxy.cfg
 
 echo "defaults
 	log	global
-	mode	http
 	option	httplog
 
 frontend web-server
 	bind *:80
-	default_backend app-servers
+	mode    http
+	default_backend web-servers
 	
-backend app-servers
+backend web-servers
 	balance	roundrobin
 	server 57647-web-01 54.197.73.242:80 check
 	server 57647-web-02 54.208.60.185:80 check" >> /etc/haproxy/haproxy.cfg
@@ -26,4 +26,4 @@ backend app-servers
 systemctl enable haproxy
 
 #start haproxy
-/etc/init.d/haproxy restart
+systemctl start haproxy
