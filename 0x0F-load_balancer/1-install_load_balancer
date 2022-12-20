@@ -26,4 +26,4 @@ backend app-servers
 systemctl enable haproxy
 
 #start haproxy
-systemctl start haproxy
+/etc/init.d/haproxy restart
