@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#display information about subdomains
+
+get_domains() {
+
+    if [ "$2" ]
+    then
+        source=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:')
+        record=$(echo $source | awk '{print $7}')
+        ip=$(echo $source | awk '{print $8}')
+        echo "The subdomain $2 is a $record record and points to $ip"
+        return 0
+    fi
+}
+
+subdomains=("web-01" "web-02" "lb-01" "www")
+
+if [ ! "$1" ]
+then
+    exit
+elif [ "$2" ]
+then
+    get_domains "$1" "$2"
+else
+    get_domains "$1" "${subdomains[3]}"
+    get_domains "$1" "${subdomains[2]}"
+    get_domains "$1" "${subdomains[0]}"
+    get_domains "$1" "${subdomains[1]}"
+fi
