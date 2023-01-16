@@ -3,10 +3,9 @@
 return information about his/her TODO list progress
 and exports data to json
 """
-
+import json
 import requests
 from sys import argv
-import json
 
 
 BASE_URL = 'https://jsonplaceholder.typicode.com'
