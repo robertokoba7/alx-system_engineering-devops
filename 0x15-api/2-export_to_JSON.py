@@ -7,18 +7,26 @@ import json
 import requests
 from sys import argv
 
+if __name__ == "__main__":
+    url = 'https://jsonplaceholder.typicode.com/'
 
-BASE_URL = 'https://jsonplaceholder.typicode.com'
+    userid = sys.argv[1]
+    user = '{}users/{}'.format(url, userid)
+    res = requests.get(user)
+    json_o = res.json()
+    name = json_o.get('username')
 
-user = requests.get(f'{BASE_URL}/users/{argv[1]}').json()
-todos = requests.get(f'{BASE_URL}/todos', params={"userId": argv[1]}).json()
+    todos = '{}todos?userId={}'.format(url, userid)
+    res = requests.get(todos)
+    tasks = res.json()
+    l_task = []
+    for task in tasks:
+        dict_task = {"task": task.get('title'),
+                     "completed": task.get('completed'),
+                     "username": name}
+        l_task.append(dict_task)
 
-with open(f'{argv[1]}.json', 'w', encoding='utf8') as f:
-    tasks = []
-    for todo in todos:
-        tasks.append({"task": f'{todo["title"]}',
-                      "completed": f'{str(todo["completed"])}',
-                      "username": f'{user["name"]}'})
-    data = {f"{argv[1]}": tasks}
-    json_string = json.dumps(data)
-    f.write(json_string.rstrip())
+    d_task = {str(userid): l_task}
+    filename = '{}.json'.format(userid)
+    with open(filename, mode='w') as f:
+        json.dump(d_task, f)
