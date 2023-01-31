@@ -10,17 +10,20 @@ def top_ten(subreddit):
     first 10 hot posts listed for a given subreddit"""
     u_agent = 'Mozilla/5.0'
 
-
     headers = {
-            'User-Agent': 'u_agent'
+        'User-Agent': 'u_agent'
     }
-    
+
     params = {
         'limit' = 10
     }
 
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit"
-    response = requests.get(url, headers=headers, params=params, allow_redirects=False)
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params,
+        allow_redirects=False)
     if (response.status_code != 200):
         print(None)
         return
@@ -29,4 +32,3 @@ def top_ten(subreddit):
         print(None)
     else:
         print(post['data']['title'])
-
