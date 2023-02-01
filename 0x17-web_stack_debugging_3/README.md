@@ -4,8 +4,10 @@ The web stack I am debugging today is a Wordpress website running on a LAMP stac
 
 ## Technologies
 ---
-  *`puppet-lint` version 2.1.1
+  `puppet-lint` version 2.1.1
 
 ## Files
 ---
- Finds out why Apache is returning a 500 error by use of `strace`
+ **Filename**         | **Description**
+----------------------|-----------------
+Finds out why Apache is returning a 500 error by use of `strace`
