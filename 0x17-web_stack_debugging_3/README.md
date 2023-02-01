@@ -8,6 +8,6 @@ The web stack I am debugging today is a Wordpress website running on a LAMP stac
 
 ## Files
 ---
- **Filename**         | **Description**
-----------------------|-----------------
-Finds out why Apache is returning a 500 error by use of `strace`
+ **Filename**                | **Description**
+-----------------------------|-----------------
+`0-strace_is_your_friend.pp` | Finds out why Apache is returning a 500 error by use of `strace`
